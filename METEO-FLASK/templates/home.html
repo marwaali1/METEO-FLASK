@@ -1,0 +1,43 @@
+{% extends "layout.html" %} {% block content %}
+<div class="containair">
+  <div class="card mb-4">
+    <h1 class="text-dark">Météo ESSAOUIRA  </h1>
+    <h1 class="text-danger">{{ lyouma }} : <span>{{ dateLyouma }}</span></h1>
+    <h4 class="text-success">heure actuelle:{{current_H }}:{{current_M}} </h4>
+    <div class="row">
+      {% for i in range(0, 8) %}
+      <div class="col">
+        <div class="card mb-4">
+          <h3 class="text-center text-dark">{{ dataMeteo[i]['temps'] }}:00</h3>
+          <h3 class="text-warning text-end">
+            {{ dataMeteo[i]['temperature'] }} °
+          </h3>
+          <h3 class="text-dark text-center">
+            <img src="{{ dataMeteo[i]['image'] }}" />
+          </h3>
+          <h3 class="text-danger">{{ dataMeteo[i]['wind'] }} Km/h</h3>
+          <h3 class="text text-dark">{{ dataMeteo[i]["precipitation"] }} mm</h3>
+          {% if dataMeteo[i]["temps"] > current_H  %}
+           <h3 class="text-primary ">Pb={{Pb}}</p>
+           <h3 class="text-primary ">Pm={{Pm}}</p>
+          {%else%}
+          <form action="#" method="POST"> 
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-auto">
+                  <input class="btn btn-success  "  type="submit" value="Good" id="G">
+                  <br><br>
+                  <input class="btn btn-danger  "  type="submit" value="bad" id="B">
+                </div>
+              </div>
+            </div>
+          </form>
+          {% endif%}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
